@@ -10,15 +10,20 @@ package ClasesProyectoAerolinea;
  */
 public class Avion {
 
-    String matricula;
-    String modelo;
-    int filasPrimera;
-    int filasEjecutiva;
-    int filasEconomica;
-    int columnas;
+    //para identificar el avion
+    private String matricula;
+    private String modelo;
 
+    //cantidad de filas por zona
+    private int filasPrimera;
+    private int filasEjecutiva;
+    private int filasEconomica;
+    private int columnas;
+
+    //matriz de asientos que se ven en el avion
     Asiento[][] asientos;
 
+    //constructor que identifica el avion y genera automaticamente la matriz que corresponde
     public Avion(String matricula, String modelo, int filasPrimera, int filasEjecutiva, int filasEconomica, int columnas) {
         this.matricula = matricula;
         this.modelo = modelo;
@@ -29,11 +34,13 @@ public class Avion {
         inicializarAsientos();
     }
 
+    //inicializa cada posicion de la matriz con un asiento segun su zona
     private void inicializarAsientos() {
         int totaldeFilas = filasPrimera + filasEjecutiva + filasEconomica;
         asientos = new Asiento[totaldeFilas][columnas];
         for (int i = 0; i < totaldeFilas; i++) {
             for (int j = 0; j < columnas; j++) {
+
                 String zona;
                 if (i < filasPrimera) {
                     zona = "Primera";
@@ -42,16 +49,18 @@ public class Avion {
                 } else {
                     zona = "Economica";
                 }
-                asientos[i][j] = new Asiento(i, j, zona); //DUDA TIFF
+                asientos[i][j] = new Asiento(i, j, zona);
             }
         }
     }
 
-    public int Todoslosasietos() {
+    //total de asientos
+    public int getTotaldeAsientos() {
         return (filasPrimera + filasEjecutiva + filasEconomica) * columnas;
     }
 
-    public int AsientoOcupados() {
+    //cuenta cuantos asientos estan ocupados
+    public int AsientosOcupados() {
         int contadordeunsolouso = 0;
         for (int i = 0; i < asientos.length; i++) {
             for (int j = 0; j < asientos[i].length; j++) {
@@ -64,7 +73,7 @@ public class Avion {
     }
 
     public double getPorcentajeOcupacion() {
-        return (double) AsientoOcupados() / Todoslosasietos() * 100;
+        return (double) AsientosOcupados() / getTotaldeAsientos() * 100;
 
     }
 

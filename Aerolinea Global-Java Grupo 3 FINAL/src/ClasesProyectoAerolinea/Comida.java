@@ -10,10 +10,14 @@ package ClasesProyectoAerolinea;
  */
 public class Comida {
 
-    String nombre;
-    String categoria; // "DutyFree", "Snack", "Bebida", "Electronica" //HAY QUE AGREGAR MAS OPCIONES JAJAJA PERO NO SE ME OCURRIO NADA
-    double precio;
-    double IVA = 0.13;
+    //nombre del producto
+    private String nombre;
+    
+    private String categoria; // "DutyFree", "Snack", "Bebida", "Electronica" //HAY QUE AGREGAR MAS OPCIONES JAJAJA PERO NO SE ME OCURRIO NADA
+    private double precio;
+    
+    //IVA fijo que aplica solo a snacks y bebidas
+    private double IVA = 0.13;
 
     public Comida(String nombre, String categoria, double precio) {
         this.nombre = nombre;
@@ -21,7 +25,8 @@ public class Comida {
         this.precio = precio;
     }
 
-    public int esDutyFreeono() {
+    //Devuelve 1 si esta libre de impuestos o si no 0
+    public int TipoCategoria() {
         if (categoria.equals("DutyFree") || categoria.equals("Electronica")) {
             return 1;
         } else {
@@ -29,16 +34,18 @@ public class Comida {
         }
     }
 
-    public double PrecioFinalcomida() {
-        if (esDutyFreeono() == 1) {
+    //aplica el impuesto si es que debe
+    public double getPrecioFinal() {
+        if (TipoCategoria() == 1) {
             return precio;
         } else {
             return precio * (1 + IVA);
         }
     }
 
-    public double Impuestaso() {
-        if (esDutyFreeono() == 1) {
+    //Devuelve el monto del impuesto
+    public double Impuesto() {
+        if (TipoCategoria() == 1) {
             return 0;
         } else {
             return precio * IVA;

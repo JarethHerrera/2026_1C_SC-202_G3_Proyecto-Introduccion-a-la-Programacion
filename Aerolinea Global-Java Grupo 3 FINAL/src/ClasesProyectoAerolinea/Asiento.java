@@ -10,12 +10,18 @@ package ClasesProyectoAerolinea;
  */
 public class Asiento {
 
-    int fila;
-    int columna;
-    String zona; // "Primera", "Ejecutiva", "Economica"
-    int ocupado;
-    String pasajeroId;
+    //posicion en la matriz de los asientos
+    private int fila;
+    private int columna;
 
+    private String zona; // "Primera", "Ejecutiva", "Economica"
+
+    private int ocupado;
+
+    //cedula del pasajero, null si es que esta libre
+    private String pasajeroId;
+
+    //constructor que crea el asiento libre
     public Asiento(int fila, int columna, String zona) {
         this.fila = fila;
         this.columna = columna;
@@ -24,19 +30,20 @@ public class Asiento {
         this.pasajeroId = null;
     }
 
+    //Se marca el asiento como ocupado y guarda la cedula del que lo ocupa
     public void ocupar(String pasajeroId) {
         this.ocupado = 1;
         this.pasajeroId = pasajeroId;
     }
 
+    //Libera el asiento cuando se cancela un ticket
     public void liberar() {
         this.ocupado = 0;
         this.pasajeroId = null;
     }
 
-    public String CodigoAsi() {
-        char col = (char) ('A' + columna);
-        return (fila + 1) + "" + col;
+    public String getCodigoAsiento() {
+        return "Fila" + (fila + 1) + "Columna" + (columna + 1);
     }
 
     public int getFila() {

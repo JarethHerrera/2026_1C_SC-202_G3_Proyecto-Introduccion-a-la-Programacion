@@ -10,16 +10,16 @@ package ClasesProyectoAerolinea;
  */
 public class Tiket {
 
-    int contador = 1000;
-    String numero;
-    Pasajero pasajero;
-    Volar vuelo;
-    Asiento asiento;
-    double precioPagado;
-    String menuEspecial; 
-    Comida[] productosAbordo; 
-    int cantProductos;
-    String estado; // "Activo", "Cancelado", "Check-in"
+    private static int contador = 1000;
+    private String numero;
+    private Pasajero pasajero;
+    private Volar vuelo;
+    private Asiento asiento;
+    private double precioPagado;
+    private String menuEspecial; 
+    private Comida[] productosAbordo; 
+    private int cantProductos;
+    private String estado; // "Activo", "Cancelado", "Check-in"
 
     public Tiket(Pasajero pasajero, Volar vuelo, Asiento asiento, double precioPagado) {
         this.numero = "TK" + (++contador);
@@ -42,7 +42,7 @@ public class Tiket {
     public double getTotalProductos() {
         double total = 0;
         for (int i = 0; i < cantProductos; i++) {
-            total += productosAbordo[i].PrecioFinalcomida();
+            total += productosAbordo[i].getPrecioFinal();
         }
         return total;
     }

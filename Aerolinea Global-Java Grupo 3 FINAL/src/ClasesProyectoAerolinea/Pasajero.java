@@ -14,20 +14,21 @@ public class Pasajero {
     private String nombre;
     private String apellido;
     private String email;
-    private String niveldSocio; // "Platino", "Oro", "Regular"
+    private String nivelSocio; // "Platino", "Oro", "Regular"
 
     public Pasajero(String id, String nombre, String apellido, String email, String nivelSocio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.niveldSocio = nivelSocio;
+        this.nivelSocio = nivelSocio;
     }
 
+    //Platino= 10%, Oro= 5%, Regular sin descuento
     public double aplicarDescuento(double precio) { //Tiff use .equals, es lo mismo que == pero este si funciona con el programa
-        if (niveldSocio.equals("Platino")) {
+        if (nivelSocio.equals("Platino")) {
             return precio * 0.90;
-        } else if (niveldSocio.equals("Oro")) {
+        } else if (nivelSocio.equals("Oro")) {
             return precio * 0.95;
         } else {
             return precio;
@@ -67,11 +68,11 @@ public class Pasajero {
     }
 
     public String getNivelSocio() {
-        return niveldSocio;
+        return nivelSocio;
     }
 
     public void setNivelSocio(String nivelSocio) {
-        this.niveldSocio = nivelSocio;
+        this.nivelSocio = nivelSocio;
 
     }
 
